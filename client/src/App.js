@@ -1,11 +1,18 @@
-import './App.css';
-
+import { ChakraProvider } from "@chakra-ui/react";
+import "./App.css";
+import Footer from "./components/Footer";
+import GSTDetailsComponent from "./components/GST";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <ChakraProvider>
+      <div className="App">
+        <Header/>
+        <GSTDetailsComponent />
+        <Footer />
+      </div>
+    </ChakraProvider>
   );
 }
 

@@ -64,7 +64,8 @@ function Header() {
         </Flex>
         <Flex align="center">
           <Text fontSize="sm" color="white" mx="3">
-          <ArrowForwardIcon mx="1" />Login
+            <ArrowForwardIcon mx="1" />
+            Login
           </Text>
           <IconButton
             icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
@@ -85,27 +86,29 @@ function Header() {
         pr="190px"
         pl="190px"
       >
-        <Text fontSize="md" color="white">
-          <Icon as={CalendarIcon} /> Home
-        </Text>
-        <Text fontSize="md" color="white">
-          <Icon as={PhoneIcon} /> Services
-        </Text>
-        <Text fontSize="md" color="white">
-          <Icon as={SearchIcon} /> GST Law
-        </Text>
-        <Text fontSize="md" color="white">
-          <Icon as={DownloadIcon} /> Downloads
-        </Text>
-        <Text fontSize="md" color="white">
-          <Icon as={QuestionIcon} /> Search Taxpayer
-        </Text>
-        <Text fontSize="md" color="white">
-          <Icon as={AtSignIcon} /> Help and Taxpayer Facilities
-        </Text>
-        <Text fontSize="md" color="white">
-          <Icon as={ExternalLinkIcon} /> e-Invoice
-        </Text>
+        {[
+          { icon: CalendarIcon, label: "Home" },
+          { icon: PhoneIcon, label: "Services" },
+          { icon: SearchIcon, label: "GST Law" },
+          { icon: DownloadIcon, label: "Downloads" },
+          { icon: QuestionIcon, label: "Search Taxpayer" },
+          { icon: AtSignIcon, label: "Help and Taxpayer Facilities" },
+          { icon: ExternalLinkIcon, label: "e-Invoice" },
+        ].map((item) => (
+          <Text
+            key={item.label}
+            fontSize="md"
+            color="white"
+            _hover={{
+              cursor: "pointer",
+              color: "#17c5ba",
+              fontSize: "lg",
+              transition: "color 0.3s, font-size 0.3s",
+            }}
+          >
+            <Icon as={item.icon} /> {item.label}
+          </Text>
+        ))}
       </Flex>
     </Flex>
   );

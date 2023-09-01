@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 
-function MidSection() {
+function GST() {
   const [searchValue, setSearchValue] = useState("33AAGCC7144L6ZE");
   const [filteredData, setFilteredData] = useState({});
   const [loading, setLoading] = useState(false); 
@@ -71,8 +71,8 @@ function MidSection() {
         return;
       }
 
-      const response = await axios.get("http://localhost:8000/fetch-data");
-      console.log("API Response:", response.data.data);
+      const response = await axios.get("https://modern-cow-galoshes.cyclic.app/fetch-data");
+      // console.log("API Response:", response.data.data);
 
       if (!response.data || Object.keys(response.data).length === 0) {
         setErrorMessage("No data found for the provided GSTIN/UIN.");
@@ -166,4 +166,4 @@ function MidSection() {
   );
 }
 
-export default MidSection;
+export default GST;

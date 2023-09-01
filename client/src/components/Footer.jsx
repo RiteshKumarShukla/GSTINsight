@@ -70,7 +70,8 @@ function Footer() {
               Related Sites
             </Text>
             <Text fontSize="sm">
-              Central Board of Indirect Taxes and Customs
+              Central Board of Indirect 
+              <br />Taxes and Customs
               <br />
               <br />
               State Tax Websites
@@ -132,7 +133,8 @@ function Footer() {
               Contact Us
             </Text>
             <Text fontSize="sm">
-              Help Desk Number: 1800-103-4786
+              Help Desk Number: 
+              <br />1800-103-4786
               <br />
               <br />
               Log/Track Your Issue: <br /> Grievance Redressal Portal for GST

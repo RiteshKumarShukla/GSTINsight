@@ -1,95 +1,166 @@
-import { Box, Heading, Text, Stack, Badge, Grid } from "@chakra-ui/react";
+import React, { useState } from "react";
+import {
+  Flex,
+  Text,
+  Box,
+  Container,
+  Input,
+  Button,
+  VStack,
+  Divider,
+  Spinner, // Import Spinner from Chakra UI
+} from "@chakra-ui/react";
+import axios from "axios";
 
-const GSTDetailsComponent = () => {
-  const data = {
-    ntcrbs: "MFT",
-    adhrVFlag: "Yes",
-    lgnm: "SUZLON ENERGY LTD",
-    stj: "State - Andhra Pradesh,Division - Anantapur,Circle - ANANTHAPUR-II (Jurisdictional Office)",
-    dty: "Regular",
-    cxdt: "",
-    gstin: "37AADCS0472N1Z1",
-    nba: [
-      "Works Contract",
-      "Office / Sale Office",
-      "Recipient of Goods or Services",
-      "Service Provision",
-      "Factory / Manufacturing",
-      "Warehouse / Depot",
-    ],
-    ekycVFlag: "Not Applicable",
-    cmpRt: "NA",
-    rgdt: "01/07/2017",
-    ctb: "Public Limited Company",
-    pradr: {
-      adr: "6-3-219, RAMNAGAR Extension, ANANTAPUR, ANANTAPUR, Ananthapuramu, Andhra Pradesh, 515004",
-    },
-    sts: "Active",
-    tradeNam: "SUZLON ENERGY LTD",
-    isFieldVisitConducted: "No",
-    adhrVdt: "16/03/2023",
-    ctj: "Commissionerate - TIRUPATI,Division - ANANTAPUR,Range - ANANTAPUR - 1 RANGE",
-    einvoiceStatus: "Yes",
+function MidSection() {
+  const [searchValue, setSearchValue] = useState("33AAGCC7144L6ZE");
+  const [filteredData, setFilteredData] = useState({});
+  const [loading, setLoading] = useState(false); // State to track loading
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const keyFullForms = {
+    gstin: "GSTIN of the Tax Payer",
+    einvoiceStatus: "E invoice enablement status",
+    lgnm: "Legal Name of Business",
+    stj: "State Jurisdiction",
+    ctj: "Centre Jurisdiction",
+    rgdt: "Date of Registration",
+    ctb: "Constitution of Business",
+    dty: "Taxpayer type",
+    nba: "Nature of Business Activity",
+    sts: "GSTN status",
+    cxdt: "Date Of Cancellation",
+    lstupdt: "Last Updated Date",
+    stjCd: "State Jurisdiction Code",
+    ctjCd: "Centre Jurisdiction Code",
+    tradeNam: "Trade Name",
+    adadr: "Additional Place of Business Fields",
+    addr: "Additional place of business address",
+    bnm: "Building Name",
+    st: "Street",
+    loc: "Location",
+    bno: "Door Number",
+    stcd: "State name",
+    flno: "Floor Number",
+    lt: "Lattitude",
+    lg: "Longitude",
+    pncd: "Pin Code",
+    ntr: "Nature of Additional place of business",
+    pradr: "Principal Place of Business fields",
+    addr: "Principal Place of Business Address",
+    bnm: "Building Name",
+    st: "Street",
+    loc: "Location",
+    bno: "Door Number",
+    stcd: "State name",
+    flno: "Floor Number",
+    lt: "Lattitude",
+    lg: "Longitude",
+    pncd: "Pin Code",
+    ntr: "Nature of principal place of Business",
+  };
+  const handleSearch = async () => {
+    try {
+      setErrorMessage("");
+      setLoading(true);
+
+      if (!searchValue) {
+        setErrorMessage("Please enter a GSTIN/UIN.");
+        setFilteredData({});
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.get("http://localhost:8000/fetch-data");
+      console.log("API Response:", response.data.data);
+
+      if (!response.data || Object.keys(response.data).length === 0) {
+        setErrorMessage("No data found for the provided GSTIN/UIN.");
+        setFilteredData({});
+      } else {
+        setErrorMessage("");
+        setFilteredData(response.data.data);
+      }
+
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("An error occurred while fetching data.");
+      setFilteredData({});
+      setLoading(false);
+    }
   };
 
-  console.log(data)
   return (
-    <Box p={6} shadow="md" borderWidth="1px" borderRadius="md">
-      <Heading as="h2" size="lg" mb={4}>
-        GST Details for {data.tradeNam}
-      </Heading>
-      <Stack spacing={4}>
-        <Text>
-          <strong>Legal Name:</strong> {data.lgnm}
+    <Box py="12">
+      <Container maxW="container.xl">
+        <Text fontSize="2xl" fontWeight="bold" mb="4" ml="4">
+          Search Taxpayer
         </Text>
-        <Text>
-          <strong>GSTIN:</strong> {data.gstin}
-        </Text>
-        <Text>
-          <strong>Status:</strong> {data.sts}
-        </Text>
-        <Text>
-          <strong>Address:</strong> {data.pradr.adr}
-        </Text>
-        {/* ... (other data fields) */}
-        <Text>
-          <strong>Business Activities:</strong>
-        </Text>
-        <Stack direction="row" spacing={2}>
-          {data.nba.map((activity, index) => (
-            <Badge key={index} colorScheme="blue">
-              {activity}
-            </Badge>
-          ))}
-        </Stack>
-      </Stack>
-      <Grid
-        templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
-        gap={4}
-        mt={4}
-      >
-        <Box>
-          <Text>
-            <strong>Trade Name:</strong> {data.tradeNam}
+        <Flex mb="4" pl="4" pr="4">
+          <Input
+            placeholder="Enter GSTIN/UIN of The TaxPayer..."
+            size="lg"
+            marginRight="2"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Button bg="#2c4e86" color="white" size="lg" onClick={handleSearch}>
+            Search
+          </Button>
+        </Flex>
+
+        {errorMessage && (
+          <Text ml={4} color="red.500">
+            {errorMessage}
           </Text>
-          <Text>
-            <strong>Registration Date:</strong> {data.rgdt}
-          </Text>
-          {/* Add more data fields here */}
-        </Box>
-        <Box>
-          <Text>
-            <strong>Constitution:</strong> {data.ctb}
-          </Text>
-          <Text>
-            <strong>Registration Address:</strong> {data.pradr.adr}
-          </Text>
-          {/* Add more data fields here */}
-        </Box>
-        {/* Add more grid items as needed */}
-      </Grid>
+        )}
+        {loading ? ( // Display spinner when loading is true
+          <Flex justify="center" align="center" height="200px">
+            <Spinner size="lg" color="blue.500" />
+          </Flex>
+        ) : (
+          <VStack align="stretch" spacing="4">
+            <Box p="4" borderRadius="md" boxShadow="md">
+              {Object.keys(filteredData).map((key) => (
+                <React.Fragment key={key}>
+                  {typeof filteredData[key] === "object" ? (
+                    <React.Fragment>
+                      <Text fontWeight="bold">{keyFullForms[key]}</Text>
+                      {Object.keys(filteredData[key].addr || {}).map(
+                        (subKey) => (
+                          <Flex key={subKey} justify="space-between" mb="2">
+                            <Text w="40%">{keyFullForms[subKey]}</Text>
+                            <Text w="60%">
+                              {filteredData[key].addr[subKey] || "NA"}
+                            </Text>
+                          </Flex>
+                        )
+                      )}
+                    </React.Fragment>
+                  ) : (
+                    <Flex justify="space-between" mb="2">
+                      <Text fontWeight="bold" w="40%">
+                        {keyFullForms[key]}
+                      </Text>
+                      <Text w="60%">
+                        {Array.isArray(filteredData[key])
+                          ? filteredData[key].length === 0
+                            ? "NA"
+                            : filteredData[key].join(", ")
+                          : filteredData[key] || "NA"}
+                      </Text>
+                    </Flex>
+                  )}
+                  <Divider marginTop={4} marginBottom={4} />
+                </React.Fragment>
+              ))}
+            </Box>
+          </VStack>
+        )}
+      </Container>
     </Box>
   );
-};
+}
 
-export default GSTDetailsComponent;
+export default MidSection;

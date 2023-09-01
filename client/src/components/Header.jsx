@@ -26,16 +26,15 @@ function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Flex direction="column">
+    <Flex direction="column" position="sticky" top="0" zIndex="999">
       {/* Top Section */}
       <Flex
         align="center"
         justify="flex-end"
         h={{ base: "auto", md: "30px" }}
         bg="#041447"
-        p="2"
-        pr="190px"
-        pl="190px"
+        p="3"
+        pr="14%"
       >
         <Text fontSize="sm" color="white">
           Skip to Main Content <AddIcon mx="1" /> <MinusIcon mx="1" />
@@ -47,9 +46,9 @@ function Header() {
         align="center"
         justify="space-between"
         bg="#0b1f58"
-        p="4"
-        pr="190px"
-        pl="190px"
+        p="2"
+        pr="14%"
+        pl="14%"
       >
         <Flex align="center">
           <Image
@@ -57,9 +56,10 @@ function Header() {
             alt="Logo"
             h="50px"
             pr="3"
+            mr="3"
           />
-          <Text fontSize="40px" color="white">
-            Goods & Service Tax
+          <Text fontSize="35px" color="white">
+            Goods and Service Tax
           </Text>
         </Flex>
         <Flex align="center">
@@ -83,8 +83,8 @@ function Header() {
         justify="space-around"
         bg="#2c4e86"
         p="2"
-        pr="190px"
-        pl="190px"
+        pr="12%"
+        pl="12%"
       >
         {[
           { icon: CalendarIcon, label: "Home" },

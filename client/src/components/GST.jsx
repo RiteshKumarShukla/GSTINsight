@@ -8,14 +8,14 @@ import {
   Button,
   VStack,
   Divider,
-  Spinner, // Import Spinner from Chakra UI
+  Spinner,
 } from "@chakra-ui/react";
 import axios from "axios";
 
 function MidSection() {
   const [searchValue, setSearchValue] = useState("33AAGCC7144L6ZE");
   const [filteredData, setFilteredData] = useState({});
-  const [loading, setLoading] = useState(false); // State to track loading
+  const [loading, setLoading] = useState(false); 
   const [errorMessage, setErrorMessage] = useState("");
 
   const keyFullForms = {
@@ -77,9 +77,12 @@ function MidSection() {
       if (!response.data || Object.keys(response.data).length === 0) {
         setErrorMessage("No data found for the provided GSTIN/UIN.");
         setFilteredData({});
-      } else {
+      } else if (searchValue === response.data.data.gstin) {
         setErrorMessage("");
         setFilteredData(response.data.data);
+      } else {
+        setErrorMessage("No data found for this GSTIN.");
+        setFilteredData({});
       }
 
       setLoading(false);
@@ -115,7 +118,7 @@ function MidSection() {
             {errorMessage}
           </Text>
         )}
-        {loading ? ( // Display spinner when loading is true
+        {loading ? ( 
           <Flex justify="center" align="center" height="200px">
             <Spinner size="lg" color="blue.500" />
           </Flex>

@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
-const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -10,17 +10,6 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB setup
-mongoose.connect("mongodb+srv://riteshshukla:riteshshukla@cluster0.fo6fefn.mongodb.net/gst", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => {
-  console.log("Connected to MongoDB");
-});
-
 // API Endpoint
 app.get("/fetch-data", async (req, res) => {
   try {
@@ -28,12 +17,12 @@ app.get("/fetch-data", async (req, res) => {
       "https://api.mastergst.com/public/search",
       {
         params: {
-          email: "pritampritamhalder@gmail.com",
-          gstin: "33AAGCC7144L6ZE",
+          email: process.env.EMAIL,
+          gstin: process.env.GSTIN,
         },
         headers: {
-          client_id: "a207fac9-e0fb-4f4e-83e4-e6e02f6eefda",
-          client_secret: "6a89e98b-ae2d-4221-b54a-254e52de07c7",
+          client_id: process.env.CLIENTID,
+          client_secret: process.env.CLIENTSECRET,
         },
       }
     );

@@ -1,6 +1,5 @@
 # GSTINsight
-
-GSTINsight is a web application designed to help users verify the GSTIN (Goods and Services Tax Identification Number) of a business entity. It leverages the power of the MasterGST API to fetch and display essential information associated with a GSTIN. With GSTINsight, you can quickly and accurately verify the legitimacy of a GST number, ensuring transparency and trust in your business transactions.
+The objective of this project is to develop a web application that allows users to verify the GSTIN number of a business entity. The application should use the GST API provided by the GST department to retrieve the relevant information about the GSTIN number.
 
 ## Table of Contents
 

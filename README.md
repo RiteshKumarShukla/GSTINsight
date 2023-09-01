@@ -38,11 +38,17 @@ GSTINsight is built with the following technologies:
 
 ## Screenshots
 
-![Screenshot 1](insert_screenshot1_image_url_here)
-Caption: (Add a caption describing the screenshot)
 
-![Screenshot 2](insert_screenshot2_image_url_here)
-Caption: (Add a caption describing the screenshot)
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/4edac03c-4ad2-42bd-ae12-d6fb45d507b5)
+
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/1535e932-06ac-4bec-ba33-e45165966ef5)
+
+
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/8a435839-6f39-4bdd-9e05-4c551d9cb0b6)
+
+
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/e89046be-df67-46e3-83ca-b8ff29617c7d)
+
 
 ## Getting Started
 
@@ -51,7 +57,7 @@ To run GSTINsight locally, follow these steps:
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/yourusername/GSTINsight.git
+   git clone https://github.com/RiteshKumarShukla/GSTINsight.git
    cd GSTINsight
    ```
 

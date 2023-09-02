@@ -39,20 +39,22 @@ GSTINsight is built with the following technologies:
 ## Screenshots
 
 
-![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/4edac03c-4ad2-42bd-ae12-d6fb45d507b5)
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/3c7c6cc9-c3dd-4d31-b9ac-65811cba8917)
 
-![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/1535e932-06ac-4bec-ba33-e45165966ef5)
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/e455745e-bf2b-4872-b4af-0ae58fb37069)
 
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/55a0d033-5068-4d6d-bee0-01742c15a7b6)
 
-![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/8a435839-6f39-4bdd-9e05-4c551d9cb0b6)
-
-
-![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/e89046be-df67-46e3-83ca-b8ff29617c7d)
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/fe15e982-2d8d-4ecf-99e1-fe4dbb9c9916)
 
 
-![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/16c21aa8-8965-495f-86ad-cd6cd16dbcc2)
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/4c9b4440-708f-483f-a331-4d3f533fbe63)
 
 
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/3857ef2c-c86c-4046-bdec-a2db25f9d84d)
+
+
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/40453b82-9b97-4f7a-9ea6-5f279c2658fe)
 
 ## Getting Started
 

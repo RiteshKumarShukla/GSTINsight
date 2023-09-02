@@ -9,8 +9,7 @@ The objective of this project is to develop a web application that allows users 
 - [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+- [Sources](#sources)
 
 ## Technologies
 
@@ -35,6 +34,8 @@ GSTINsight is built with the following technologies:
 
 - **Responsive Design**: The application is designed to work seamlessly on both desktop and mobile devices.
 
+- **Theme Customization**: The application is designed to work seamlessly on both light mode and dark mode.
+
 ## Screenshots
 
 
@@ -47,6 +48,10 @@ GSTINsight is built with the following technologies:
 
 
 ![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/e89046be-df67-46e3-83ca-b8ff29617c7d)
+
+
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/16c21aa8-8965-495f-86ad-cd6cd16dbcc2)
+
 
 
 ## Getting Started
@@ -108,4 +113,10 @@ GSTINsight can be deployed to various hosting platforms. Here's a general outlin
 4. Configure your hosting platform to serve the frontend build and start the backend server.
 
 5. Access your deployed application using the provided URL.
+
+## Sources
+
+**Master GST API** :  https://api.mastergst.com
+
+**Note** : This API will work for only one GSTIN (33AAGCC7144L6ZE), Because it allows us to check only one GSTIN for free. If You want to explore more, please switch to premium plan.
 

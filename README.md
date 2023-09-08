@@ -38,6 +38,9 @@ GSTINsight is built with the following technologies:
 
 ## Screenshots
 
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/54d27e97-38f5-4029-92b8-d654aecad208)
+
+![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/da38132e-dd68-4ddd-8f5a-c1d269768c45)
 
 ![image](https://github.com/RiteshKumarShukla/GSTINsight/assets/110231091/3c7c6cc9-c3dd-4d31-b9ac-65811cba8917)
 
@@ -115,10 +118,4 @@ GSTINsight can be deployed to various hosting platforms. Here's a general outlin
 4. Configure your hosting platform to serve the frontend build and start the backend server.
 
 5. Access your deployed application using the provided URL.
-
-## Sources
-
-**Master GST API** :  https://api.mastergst.com
-
-**Note** : This API will work for only one GSTIN (33AAGCC7144L6ZE), Because it allows us to check only one GSTIN for free. If You want to explore more, please switch to premium plan.
 

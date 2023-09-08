@@ -1,39 +1,29 @@
 const express = require("express");
-const axios = require("axios");
-const cors = require("cors");
-require("dotenv").config();
+const mongoose = require("./config/db");
+const bodyParser = require("body-parser");
+const gstinRoutes = require("./routes/gstin");
 
 const app = express();
-const port = process.env.PORT || 8000;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// Middleware to parse JSON request bodies
+app.use(bodyParser.json());
 
-// API Endpoint
-app.get("/fetch-data", async (req, res) => {
-  try {
-    const response = await axios.get(
-      "https://api.mastergst.com/public/search",
-      {
-        params: {
-          email: process.env.EMAIL,
-          gstin: process.env.GSTIN,
-        },
-        headers: {
-          client_id: process.env.CLIENTID,
-          client_secret: process.env.CLIENTSECRET,
-        },
-      }
-    );
-    res.json(response.data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred" });
-  }
+// Set up routes
+app.use("/gstin", gstinRoutes);
+
+// Define a default route
+app.get("/", (req, res) => {
+  res.send("Welcome to your backend API!");
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Internal server error" });
+});
+
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

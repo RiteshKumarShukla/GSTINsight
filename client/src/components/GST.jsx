@@ -9,14 +9,23 @@ import {
   VStack,
   Divider,
   Spinner,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
 } from "@chakra-ui/react";
 import axios from "axios";
 
 function GST() {
-  const [searchValue, setSearchValue] = useState("33AAGCC7144L6ZE");
+  const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState({});
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [allGstinData, setAllGstinData] = useState([]);
 
   const keyFullForms = {
     gstin: "GSTIN of the Tax Payer",
@@ -71,15 +80,18 @@ function GST() {
         return;
       }
 
-      const response = await axios.get("https://modern-cow-galoshes.cyclic.app/fetch-data");
-      // console.log("API Response:", response.data.data);
+      // Update the URL to include the searchValue
+      const response = await axios.get(
+        `https://gstin-c2rb.onrender.com/gstin/search/${searchValue}`
+      );
+      console.log("API Response:", response.data);
 
       if (!response.data || Object.keys(response.data).length === 0) {
         setErrorMessage("No data found for the provided GSTIN/UIN.");
         setFilteredData({});
-      } else if (searchValue === response.data.data.gstin) {
+      } else if (searchValue === response.data.gstin) {
         setErrorMessage("");
-        setFilteredData(response.data.data);
+        setFilteredData(response.data);
       } else {
         setErrorMessage("No data found for this GSTIN.");
         setFilteredData({});
@@ -91,6 +103,20 @@ function GST() {
       setErrorMessage("An error occurred while fetching data.");
       setFilteredData({});
       setLoading(false);
+    }
+  };
+
+  const openModal = async () => {
+    try {
+      const response = await axios.get(
+        "https://gstin-c2rb.onrender.com/gstin/all"
+      );
+      if (response.data && response.data.length > 0) {
+        setAllGstinData(response.data);
+        setIsModalOpen(true);
+      }
+    } catch (error) {
+      console.error("Error fetching all GSTINs:", error);
     }
   };
 
@@ -111,6 +137,15 @@ function GST() {
           <Button bg="#2c4e86" color="white" size="lg" onClick={handleSearch}>
             Search
           </Button>
+          <Button
+            ml="2"
+            size="lg"
+            bg="#2c4e86"
+            color="white"
+            onClick={openModal}
+          >
+            See All GSTINs
+          </Button>
         </Flex>
 
         {errorMessage && (
@@ -118,7 +153,7 @@ function GST() {
             {errorMessage}
           </Text>
         )}
-        {loading ? ( 
+        {loading ? (
           <Flex justify="center" align="center" height="200px">
             <Spinner size="lg" color="blue.500" />
           </Flex>
@@ -162,6 +197,31 @@ function GST() {
           </VStack>
         )}
       </Container>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>All GSTINs</ModalHeader>
+          <Text fontSize="md" color="blue.600" ml="4">
+            These are the GSTINs with details available in our database.
+          </Text>
+
+          <Text fontSize="md" color="blue.600" ml="4">
+            Copy a GSTIN and paste it in the search bar for details.
+          </Text>
+          <ModalCloseButton />
+          <ModalBody>
+            {allGstinData.map((gstin, index) => (
+              <div key={index}>{gstin}</div>
+            ))}
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" onClick={() => setIsModalOpen(false)}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 }
